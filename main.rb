@@ -12,6 +12,8 @@ def generate_moves(origin)
   # down
   adjacent << [origin[1] - 2, origin[0] - 1]
   adjacent << [origin[1] - 2, origin[0] + 1]
+
+  remove_negative_from_2d_array(adjacent)
 end
 
 def remove_negative_from_2d_array(array)
@@ -21,7 +23,7 @@ def remove_negative_from_2d_array(array)
 end
 
 def knight_move(start_point, end_point)
-  remove_negative_from_2d_array(generate_moves(start_point))
+  p generate_moves(start_point)
   
 end
-knight_move([3,3], [3,6])
+knight_move([0,0], [3,6])
