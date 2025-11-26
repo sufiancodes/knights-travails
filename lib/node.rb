@@ -1,10 +1,8 @@
 class Node
-  
-  attr_accessor :parent, :first_child, :next_sibling 
+  attr_accessor :children, :parent
   
   def initialize(parent)
     @parent = parent
-    @first_child = nil
-    @next_sibling = nil
+    @children = nil
   end
 end
