@@ -23,20 +23,67 @@ def remove_negative_from_2d_array(array)
 end
 
 def knight_move(start_point, end_point)
-  parent = {}
+  parent = {start_point => nil}
+  visited = [start_point]
+  # for every move we are just trying to remember its parent
   first_child = generate_moves(start_point)
-  first_child.each do |kid|
-    parent[kid] = start_point
+  first_child.each do |child|
+    parent[child] = start_point
   end
   first_child.each do |kid|
     second_child = generate_moves(kid)
-    second_child.each do |kido|
-      parent[kido] = kid
+    second_child.each do |child|
+      if !visited.include?(child)
+        parent[child] = kid
+        visited.push(kid)
+      end
     end
   end
-  pp parent
+
+  # pp parent
+  # node = parent[[3,4]]
+  # pp node
+  
 end
-knight_move([0,0], [3,3])
+# knight_move([0,0], [3,3])
+knight_move([3,3], [3,4])
+# 
+# p generate_moves([2,1])
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# first_child = generate_moves(start_point)
+#   first_child.each do |kid|
+#       parent[kid] = start_point
+#   end
+#   first_child.each do |kid|
+#     second_child = generate_moves(kid)
+#     second_child.each do |kido|
+#       unless visited.include?(kido)
+#         parent[kido] = kid
+#         visited.push(kido)
+#       end
+#     end
+#   end
+#   pp parent
+#   node = parent[[3,3]]
+#   p node
+
+
 
 
 
