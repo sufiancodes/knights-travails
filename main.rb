@@ -1,22 +1,22 @@
 def generate_moves(origin)
   adjacent = []
   # up
-  adjacent << [origin[1] + 2, origin[0] - 1]
-  adjacent << [origin[1] + 2, origin[0] + 1]
+  adjacent << [origin[0] + 2, origin[1] - 1]
+  adjacent << [origin[0] + 2, origin[1] + 1]
   # left
-  adjacent << [origin[1] + 1, origin[0] - 2]
-  adjacent << [origin[1] - 1, origin[0] - 2]
+  adjacent << [origin[0] - 2, origin[1] - 1]
+  adjacent << [origin[0] - 2, origin[1] + 1]
   # right
-  adjacent << [origin[1] + 1, origin[0] + 2]
-  adjacent << [origin[1] - 1, origin[0] + 2]
+  adjacent << [origin[0] + 1, origin[1] - 2]
+  adjacent << [origin[0] + 1, origin[1] + 2]
   # down
-  adjacent << [origin[1] - 2, origin[0] - 1]
-  adjacent << [origin[1] - 2, origin[0] + 1]
+  adjacent << [origin[0] - 1, origin[1] - 2]
+  adjacent << [origin[0] - 1, origin[1] + 2]
 
-  remove_negative_from_2d_array(adjacent)
+  filter_illegal_position(adjacent)
 end
 
-def remove_negative_from_2d_array(array)
+def filter_illegal_position(array)
     filteration = array.reject do |inner_array|
     inner_array.any? {|element| element < 0 }
   end
@@ -46,14 +46,9 @@ def knight_move(start_point, end_point)
   
 end
 # knight_move([0,0], [3,3])
-knight_move([3,3], [3,4])
+# knight_move([3,3], [3,4])
 # 
-# p generate_moves([2,1])
-
-
-
-
-
+p generate_moves([3,3])
 
 
 
