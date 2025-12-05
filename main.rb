@@ -18,9 +18,10 @@ end
 
 def filter_illegal_position(array)
     filteration = array.reject do |inner_array|
-    inner_array.any? {|element| element < 0 }
+    inner_array.any? {|element| element < 0 || element > 7}
   end
 end
+
 
 def knight_move(start_point, end_point)
   parent = {start_point => nil}
@@ -41,15 +42,16 @@ def knight_move(start_point, end_point)
   end
 
   # pp parent
-  # node = parent[[3,4]]
-  # pp node
+  # node = parent[[7,7]]
+  pp node
   
 end
 # knight_move([0,0], [3,3])
 # knight_move([3,3], [3,4])
 # 
-p generate_moves([3,3])
-
+a = generate_moves([7,7])
+p a
+filter_wrong_moves(a)
 
 
 
