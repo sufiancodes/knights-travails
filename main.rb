@@ -26,38 +26,49 @@ end
 def knight_move(start_point, end_point)
   parent = {start_point => nil}
   visited = [start_point]
-  # for every move we are just trying to remember its parent
-  first_child = generate_moves(start_point)
-  first_child.each do |child|
-    parent[child] = start_point
-  end
-  first_child.each do |kid|
-    second_child = generate_moves(kid)
-    second_child.each do |child|
+  queue = [start_point]
+  while !queue.empty?
+    current = queue.shift
+
+
+    if current == end_point
+      puts "find"
+      pp parent
+    end
+    moves = generate_moves(current)
+    moves.each do |child|
       if !visited.include?(child)
-        parent[child] = kid
-        visited.push(kid)
+        visited.push(child)
+        parent[child] = current
+        queue.push(child)
       end
     end
   end
-
-  # pp parent
-  # node = parent[[7,7]]
-  pp node
-  
 end
 # knight_move([0,0], [3,3])
-# knight_move([3,3], [3,4])
-# 
-a = generate_moves([7,7])
-p a
-filter_wrong_moves(a)
+knight_move([3,3], [3,4])
 
 
 
 
+#  first_child = generate_moves(start_point)
+#   first_child.each do |child|
+#     parent[child] = start_point
+#   end
+  # first_child.each do |kid|
+  #   second_child = generate_moves(kid)
+  #   second_child.each do |child|
+  #     if !visited.include?(child)
+  #       parent[child] = kid
+  #       visited.push(kid)
+  #     end
+  #   end
+#   end
 
-
+#   # pp parent
+#   # node = parent[[7,7]]
+#   pp node
+  
 
 
 
