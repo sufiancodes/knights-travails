@@ -32,8 +32,7 @@ def knight_move(start_point, end_point)
 
 
     if current == end_point
-      puts "find"
-      pp parent
+      reconstruct_path(start_point, end_point, parent)
     end
     moves = generate_moves(current)
     moves.each do |child|
@@ -44,86 +43,21 @@ def knight_move(start_point, end_point)
       end
     end
   end
+
 end
-# knight_move([0,0], [3,3])
-knight_move([3,3], [3,4])
+
+def reconstruct_path(start, ending, parent)
+  path = [ending]
+  current = parent[ending]
+  while current != start do
+    path.push(current)
+    node = parent[current]
+    path.push(node)
+  end
+  path.push(start)
+  path.reverse
+  p path
+end
 
 
-
-
-#  first_child = generate_moves(start_point)
-#   first_child.each do |child|
-#     parent[child] = start_point
-#   end
-  # first_child.each do |kid|
-  #   second_child = generate_moves(kid)
-  #   second_child.each do |child|
-  #     if !visited.include?(child)
-  #       parent[child] = kid
-  #       visited.push(kid)
-  #     end
-  #   end
-#   end
-
-#   # pp parent
-#   # node = parent[[7,7]]
-#   pp node
-  
-
-
-
-
-
-# first_child = generate_moves(start_point)
-#   first_child.each do |kid|
-#       parent[kid] = start_point
-#   end
-#   first_child.each do |kid|
-#     second_child = generate_moves(kid)
-#     second_child.each do |kido|
-#       unless visited.include?(kido)
-#         parent[kido] = kid
-#         visited.push(kido)
-#       end
-#     end
-#   end
-#   pp parent
-#   node = parent[[3,3]]
-#   p node
-
-
-
-
-
-
-
-#  parent = {}
-#   target = [3,3]
-#   first_child_parent = [0,0]
-#   first_child_child = generate_moves(first_child_parent)
-#   first_child_child.each { |child| parent[child] = first_child_parent }
-#   puts "first_child Search"
-#   p parent
-
-#   first_child_child.each do |second_childparent|
-#   second_childchildren = generate_moves(second_childparent)
-#   puts "here are second parent"
-#   p second_childparent
-#   puts "here are second children"
-#   p second_childchildren
-  
-#   second_childchildren.each { |second_childchild| parent[second_childchild] = second_childparent }
-#   end
-  
-#   puts "Second search"
-#   pp parent
-
-  # path = []
-  # path << target
-  # node = parent[target]
-  # while node != first_child_parent
-  #   path << node
-  #   node = parent[node]
-  # end
-  # path << first_child_parent
-  # p path.reverse
+knight_move([0,0],[3,3])
