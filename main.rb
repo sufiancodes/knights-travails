@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 def generate_moves(origin)
   adjacent = []
   # up
@@ -17,45 +19,41 @@ def generate_moves(origin)
 end
 
 def filter_illegal_position(array)
-    filteration = array.reject do |inner_array|
-    inner_array.any? {|element| element < 0 || element > 7}
+  array.reject do |inner_array|
+    inner_array.any? { |element| element < 0 || element > 7 }
   end
 end
 
-
 def knight_move(start_point, end_point)
-  parent = {start_point => nil}
+  parent = { start_point => nil }
   visited = [start_point]
   queue = [start_point]
-  while !queue.empty?
+  until queue.empty?
     current = queue.shift
-
 
     if current == end_point
       reconstruct_path(start_point, end_point, parent)
     end
     moves = generate_moves(current)
     moves.each do |child|
-      if !visited.include?(child)
+      unless visited.include?(child)
         visited.push(child)
         parent[child] = current
         queue.push(child)
       end
     end
   end
-
 end
 
 def reconstruct_path(start, ending, parent)
   path = [ending]
   current = parent[ending]
-  while current != start do
+  while current != start
     path.push(current)
     current = parent[current]
   end
   path.push(start)
-  p path.reverse
+  p(path.reverse)
 end
 
-
-knight_move([0,0],[3,3])
+knight_move([0, 0], [3, 3])
