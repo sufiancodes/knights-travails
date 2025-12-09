@@ -51,12 +51,10 @@ def reconstruct_path(start, ending, parent)
   current = parent[ending]
   while current != start do
     path.push(current)
-    node = parent[current]
-    path.push(node)
+    current = parent[current]
   end
   path.push(start)
-  path.reverse
-  p path
+  p path.reverse
 end
 
 
